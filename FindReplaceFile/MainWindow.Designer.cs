@@ -77,12 +77,15 @@
             // 
             // loadedFilesLbl
             // 
+            this.loadedFilesLbl.AllowDrop = true;
             this.loadedFilesLbl.BackColor = System.Drawing.Color.GhostWhite;
             this.loadedFilesLbl.Cursor = System.Windows.Forms.Cursors.Default;
             this.loadedFilesLbl.Location = new System.Drawing.Point(12, 284);
             this.loadedFilesLbl.Name = "loadedFilesLbl";
             this.loadedFilesLbl.Size = new System.Drawing.Size(1200, 189);
             this.loadedFilesLbl.TabIndex = 2;
+            this.loadedFilesLbl.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedFilesLbl_DragDrop);
+            this.loadedFilesLbl.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedFilesLbl_DragEnter);
             // 
             // findTxt
             // 

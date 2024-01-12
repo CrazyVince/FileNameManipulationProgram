@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
+using System.Windows.Forms.VisualStyles;
 
 namespace FindReplaceFile
 {
     public partial class MainWindow : Form
     {
-        List<string> NamesRaw;
-        List<string> NamesProcessed;
+        List<string> loadedNames;
+        List<string> processedNames;
 
 
         public MainWindow()
@@ -26,8 +19,8 @@ namespace FindReplaceFile
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            NamesRaw = new List<string>();
-            NamesProcessed = new List<string>();
+            loadedNames = new List<string>();
+            processedNames = new List<string>();
 
         }
 
@@ -39,13 +32,13 @@ namespace FindReplaceFile
             openFileDialog.ShowDialog();
 
             //load the file names into the loaded files list
-            NamesRaw.Clear();
+            loadedNames.Clear();
             foreach(string name in openFileDialog.FileNames)
-                NamesRaw.Add(name);
+                loadedNames.Add(name);
 
             //display the loaded files in the label.
             loadedFilesLbl.Text = "";
-            foreach (string name in NamesRaw) 
+            foreach (string name in loadedNames) 
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
@@ -65,8 +58,8 @@ namespace FindReplaceFile
                 return;
             }
 
-            NamesProcessed.Clear();
-            foreach (string name in NamesRaw)
+            processedNames.Clear();
+            foreach (string name in loadedNames)
             {
                 //get the name without the path and extension
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -81,7 +74,7 @@ namespace FindReplaceFile
                 string processedName = path + processedNameCut + type;
 
                 //add the processed name into the processed names list
-                NamesProcessed.Add(processedName);
+                processedNames.Add(processedName);
             }
 
             Apply();
@@ -91,7 +84,7 @@ namespace FindReplaceFile
         {
             string addText = addToStartTxt.Text;
 
-            foreach (string name in NamesRaw)
+            foreach (string name in loadedNames)
             {
                 //get the name without the path and extension
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -104,7 +97,7 @@ namespace FindReplaceFile
                 string processedName = path + processedNameCut;
 
                 //add the processed name into the processed names array
-                NamesProcessed.Add(processedName);
+                processedNames.Add(processedName);
             }
 
             Apply();
@@ -114,7 +107,7 @@ namespace FindReplaceFile
         {
             string addText = addToEndTxt.Text;
 
-            foreach(string name in NamesRaw)
+            foreach(string name in loadedNames)
             {
                 //get the name without the path and extension
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -129,7 +122,7 @@ namespace FindReplaceFile
                 string processedName = path + processedNameCut + type;
 
                 //add the processed name to the processed names array
-                NamesProcessed.Add(processedName);
+                processedNames.Add(processedName);
             }
 
             //apply the changes
@@ -140,7 +133,7 @@ namespace FindReplaceFile
         {
             int deleteNum = (int)deleteFromStartNum.Value;
 
-            foreach (string name in NamesRaw)
+            foreach (string name in loadedNames)
             {
                 //get the name without the path and extension
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -160,7 +153,7 @@ namespace FindReplaceFile
                 string processedName = path + processedNameCut + type;
 
                 //add the processed name to the processed names array
-                NamesProcessed.Add(processedName);
+                processedNames.Add(processedName);
             }
 
             //apply the changes
@@ -171,7 +164,7 @@ namespace FindReplaceFile
         {
             int deleteNum = (int)deleteFromEndNum.Value;
 
-            foreach (string name in NamesRaw)
+            foreach (string name in loadedNames)
             {
                 //get the name without the path and extension
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -191,7 +184,7 @@ namespace FindReplaceFile
                 string processedName = path + processedNameCut + type;
 
                 //add the processed name to the processed names array
-                NamesProcessed.Add(processedName);
+                processedNames.Add(processedName);
             }
 
             //apply the changes
@@ -201,14 +194,14 @@ namespace FindReplaceFile
         void Apply()
         {
             //Check for matching names. If matching names ar found, return out of the function.
-            for (int i = 0; i < NamesProcessed.Count; i++)
+            for (int i = 0; i < processedNames.Count; i++)
             {
-                string name = NamesProcessed[i];
-                for (int j = 0; j < NamesProcessed.Count; j++)
+                string name = processedNames[i];
+                for (int j = 0; j < processedNames.Count; j++)
                 {
                     if (j != i)
                     {
-                        if (name == NamesProcessed[j])
+                        if (name == processedNames[j])
                         {
                             MessageBox.Show("aborting, because there are matching names!!!");
                             return;
@@ -218,11 +211,11 @@ namespace FindReplaceFile
             }
 
             //rename the files to the processed names
-            for (int i = 0; i < NamesRaw.Count; i++)
+            for (int i = 0; i < loadedNames.Count; i++)
             {
                 try
                 {
-                    File.Move(NamesRaw[i], NamesProcessed[i]);
+                    File.Move(loadedNames[i], processedNames[i]);
                 }
                 catch (Exception e)
                 {
@@ -233,15 +226,15 @@ namespace FindReplaceFile
             }
 
             //load the new values into the loaded files list
-            NamesRaw.Clear();
-            foreach (string name in NamesProcessed)
-                NamesRaw.Add(name);
+            loadedNames.Clear();
+            foreach (string name in processedNames)
+                loadedNames.Add(name);
 
-            NamesProcessed.Clear();
+            processedNames.Clear();
 
             //update the loaded files label to show the new names.
             loadedFilesLbl.Text = "";
-            foreach (string name in NamesRaw)
+            foreach (string name in loadedNames)
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
@@ -261,8 +254,8 @@ namespace FindReplaceFile
 
         private void clearLoadedFilesBtn_Click(object sender, EventArgs e)
         {
-            NamesRaw.Clear();
-            NamesProcessed.Clear();
+            loadedNames.Clear();
+            processedNames.Clear();
             loadedFilesLbl.Text = "";
         }
 
@@ -275,8 +268,35 @@ namespace FindReplaceFile
             addToStartTxt.Text = "";
             deleteFromEndNum.Value = 0;
             deleteFromStartNum.Value = 0;
-            NamesRaw.Clear();
-            NamesProcessed.Clear();
+            loadedNames.Clear();
+            processedNames.Clear();
+        }
+
+        private void loadedFilesLbl_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+
+        }
+        
+        private void loadedFilesLbl_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
+                {
+                    loadedNames.Add(file);
+                    string nameCut = file.Substring(file.LastIndexOf('\\') + 1);
+                    loadedFilesLbl.Text += nameCut + ", ";
+                }
+            }
         }
     }
 }
