@@ -33,7 +33,7 @@
             this.findTxt = new System.Windows.Forms.TextBox();
             this.replaceTxt = new System.Windows.Forms.TextBox();
             this.FRBtn = new System.Windows.Forms.Button();
-            this.doneBtn = new System.Windows.Forms.Button();
+            this.clearAllBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,27 +47,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.addToEndBtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.deleteFromStartNum = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.deleteFromStartBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.deleteFromEndBtn = new System.Windows.Forms.Button();
             this.deleteFromEndNum = new System.Windows.Forms.NumericUpDown();
-            this.deleteFromStartNum = new System.Windows.Forms.NumericUpDown();
+            this.deleteFromEndBtn = new System.Windows.Forms.Button();
+            this.clearTextBoxesBtn = new System.Windows.Forms.Button();
+            this.clearLoadedFilesBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).BeginInit();
             this.SuspendLayout();
             // 
             // openFilesBtn
             // 
-            this.openFilesBtn.Location = new System.Drawing.Point(147, 49);
+            this.openFilesBtn.Location = new System.Drawing.Point(15, 12);
             this.openFilesBtn.Name = "openFilesBtn";
-            this.openFilesBtn.Size = new System.Drawing.Size(76, 28);
+            this.openFilesBtn.Size = new System.Drawing.Size(95, 83);
             this.openFilesBtn.TabIndex = 1;
             this.openFilesBtn.Text = "open files";
             this.openFilesBtn.UseVisualStyleBackColor = true;
@@ -77,9 +79,9 @@
             // 
             this.loadedFilesLbl.BackColor = System.Drawing.Color.GhostWhite;
             this.loadedFilesLbl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.loadedFilesLbl.Location = new System.Drawing.Point(12, 344);
+            this.loadedFilesLbl.Location = new System.Drawing.Point(12, 284);
             this.loadedFilesLbl.Name = "loadedFilesLbl";
-            this.loadedFilesLbl.Size = new System.Drawing.Size(516, 129);
+            this.loadedFilesLbl.Size = new System.Drawing.Size(1200, 189);
             this.loadedFilesLbl.TabIndex = 2;
             // 
             // findTxt
@@ -106,22 +108,23 @@
             this.FRBtn.UseVisualStyleBackColor = true;
             this.FRBtn.Click += new System.EventHandler(this.FRBtn_Click);
             // 
-            // doneBtn
+            // clearAllBtn
             // 
-            this.doneBtn.Location = new System.Drawing.Point(172, 234);
-            this.doneBtn.Name = "doneBtn";
-            this.doneBtn.Size = new System.Drawing.Size(51, 28);
-            this.doneBtn.TabIndex = 8;
-            this.doneBtn.Text = "done";
-            this.doneBtn.UseVisualStyleBackColor = true;
-            this.doneBtn.Click += new System.EventHandler(this.doneBtn_Click);
+            this.clearAllBtn.Location = new System.Drawing.Point(150, 130);
+            this.clearAllBtn.Name = "clearAllBtn";
+            this.clearAllBtn.Size = new System.Drawing.Size(93, 84);
+            this.clearAllBtn.TabIndex = 8;
+            this.clearAllBtn.Text = "clear everything";
+            this.clearAllBtn.UseVisualStyleBackColor = true;
+            this.clearAllBtn.Click += new System.EventHandler(this.clearAllBtn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 21);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(492, 237);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(187, 37);
             this.label2.TabIndex = 10;
             this.label2.Text = "loaded files:";
             // 
@@ -245,6 +248,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "delete from start";
             // 
+            // deleteFromStartNum
+            // 
+            this.deleteFromStartNum.Location = new System.Drawing.Point(83, 19);
+            this.deleteFromStartNum.Name = "deleteFromStartNum";
+            this.deleteFromStartNum.Size = new System.Drawing.Size(120, 20);
+            this.deleteFromStartNum.TabIndex = 14;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -285,6 +295,13 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "delete from end";
             // 
+            // deleteFromEndNum
+            // 
+            this.deleteFromEndNum.Location = new System.Drawing.Point(83, 21);
+            this.deleteFromEndNum.Name = "deleteFromEndNum";
+            this.deleteFromEndNum.Size = new System.Drawing.Size(120, 20);
+            this.deleteFromEndNum.TabIndex = 13;
+            // 
             // deleteFromEndBtn
             // 
             this.deleteFromEndBtn.Location = new System.Drawing.Point(302, 19);
@@ -295,32 +312,40 @@
             this.deleteFromEndBtn.UseVisualStyleBackColor = true;
             this.deleteFromEndBtn.Click += new System.EventHandler(this.deleteFromEndBtn_Click);
             // 
-            // deleteFromEndNum
+            // clearTextBoxesBtn
             // 
-            this.deleteFromEndNum.Location = new System.Drawing.Point(83, 21);
-            this.deleteFromEndNum.Name = "deleteFromEndNum";
-            this.deleteFromEndNum.Size = new System.Drawing.Size(120, 20);
-            this.deleteFromEndNum.TabIndex = 13;
+            this.clearTextBoxesBtn.Location = new System.Drawing.Point(15, 130);
+            this.clearTextBoxesBtn.Name = "clearTextBoxesBtn";
+            this.clearTextBoxesBtn.Size = new System.Drawing.Size(93, 84);
+            this.clearTextBoxesBtn.TabIndex = 19;
+            this.clearTextBoxesBtn.Text = "clear text boxes";
+            this.clearTextBoxesBtn.UseVisualStyleBackColor = true;
+            this.clearTextBoxesBtn.Click += new System.EventHandler(this.clearTextBoxesBtn_Click);
             // 
-            // deleteFromStartNum
+            // clearLoadedFilesBtn
             // 
-            this.deleteFromStartNum.Location = new System.Drawing.Point(83, 19);
-            this.deleteFromStartNum.Name = "deleteFromStartNum";
-            this.deleteFromStartNum.Size = new System.Drawing.Size(120, 20);
-            this.deleteFromStartNum.TabIndex = 14;
+            this.clearLoadedFilesBtn.Location = new System.Drawing.Point(150, 12);
+            this.clearLoadedFilesBtn.Name = "clearLoadedFilesBtn";
+            this.clearLoadedFilesBtn.Size = new System.Drawing.Size(93, 84);
+            this.clearLoadedFilesBtn.TabIndex = 20;
+            this.clearLoadedFilesBtn.Text = "clear loaded files";
+            this.clearLoadedFilesBtn.UseVisualStyleBackColor = true;
+            this.clearLoadedFilesBtn.Click += new System.EventHandler(this.clearLoadedFilesBtn_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1342, 482);
+            this.ClientSize = new System.Drawing.Size(1259, 482);
+            this.Controls.Add(this.clearLoadedFilesBtn);
+            this.Controls.Add(this.clearTextBoxesBtn);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.doneBtn);
+            this.Controls.Add(this.clearAllBtn);
             this.Controls.Add(this.loadedFilesLbl);
             this.Controls.Add(this.openFilesBtn);
             this.Name = "MainWindow";
@@ -334,10 +359,10 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,7 +375,7 @@
         private System.Windows.Forms.TextBox findTxt;
         private System.Windows.Forms.TextBox replaceTxt;
         private System.Windows.Forms.Button FRBtn;
-        private System.Windows.Forms.Button doneBtn;
+        private System.Windows.Forms.Button clearAllBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -371,6 +396,8 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown deleteFromEndNum;
         private System.Windows.Forms.Button deleteFromEndBtn;
+        private System.Windows.Forms.Button clearTextBoxesBtn;
+        private System.Windows.Forms.Button clearLoadedFilesBtn;
     }
 }
 

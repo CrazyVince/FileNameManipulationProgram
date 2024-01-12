@@ -198,17 +198,6 @@ namespace FindReplaceFile
             Apply();
         }
 
-        private void doneBtn_Click(object sender, EventArgs e)
-        {
-            loadedFilesLbl.Text = "";
-            findTxt.Text = "";
-            replaceTxt.Text = "";
-            addToEndTxt.Text = "";
-            addToStartTxt.Text = "";
-            NamesRaw.Clear();
-            NamesProcessed.Clear();
-        }
-
         void Apply()
         {
             //Check for matching names. If matching names ar found, return out of the function.
@@ -258,6 +247,36 @@ namespace FindReplaceFile
 
                 loadedFilesLbl.Text += nameCut + ", ";
             }
+        }
+
+        private void clearTextBoxesBtn_Click(object sender, EventArgs e)
+        {
+            findTxt.Text = "";
+            replaceTxt.Text = "";
+            addToEndTxt.Text = "";
+            addToStartTxt.Text = "";
+            deleteFromEndNum.Value = 0;
+            deleteFromStartNum.Value = 0;
+        }
+
+        private void clearLoadedFilesBtn_Click(object sender, EventArgs e)
+        {
+            NamesRaw.Clear();
+            NamesProcessed.Clear();
+            loadedFilesLbl.Text = "";
+        }
+
+        private void clearAllBtn_Click(object sender, EventArgs e)
+        {
+            loadedFilesLbl.Text = "";
+            findTxt.Text = "";
+            replaceTxt.Text = "";
+            addToEndTxt.Text = "";
+            addToStartTxt.Text = "";
+            deleteFromEndNum.Value = 0;
+            deleteFromStartNum.Value = 0;
+            NamesRaw.Clear();
+            NamesProcessed.Clear();
         }
     }
 }
