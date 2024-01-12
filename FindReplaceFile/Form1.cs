@@ -132,6 +132,7 @@ namespace FindReplaceFile
                 try
                 {
                     File.Move(NamesRaw[i], NamesProcessed[i]);
+
                 }
                 catch (Exception e)
                 {
