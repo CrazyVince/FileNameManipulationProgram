@@ -1,6 +1,6 @@
 ﻿namespace FindReplaceFile
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -46,9 +46,21 @@
             this.addToEndTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.addToEndBtn = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.deleteFromStartBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.deleteFromEndBtn = new System.Windows.Forms.Button();
+            this.deleteFromEndNum = new System.Windows.Forms.NumericUpDown();
+            this.deleteFromStartNum = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).BeginInit();
             this.SuspendLayout();
             // 
             // openFilesBtn
@@ -221,11 +233,89 @@
             this.addToEndBtn.UseVisualStyleBackColor = true;
             this.addToEndBtn.Click += new System.EventHandler(this.addToEndBtn_Click);
             // 
-            // Form1
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.deleteFromStartNum);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.deleteFromStartBtn);
+            this.groupBox4.Location = new System.Drawing.Point(788, 95);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(455, 56);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "delete from start";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "remove:";
+            // 
+            // deleteFromStartBtn
+            // 
+            this.deleteFromStartBtn.Location = new System.Drawing.Point(302, 19);
+            this.deleteFromStartBtn.Name = "deleteFromStartBtn";
+            this.deleteFromStartBtn.Size = new System.Drawing.Size(122, 28);
+            this.deleteFromStartBtn.TabIndex = 5;
+            this.deleteFromStartBtn.Text = "delete";
+            this.deleteFromStartBtn.UseVisualStyleBackColor = true;
+            this.deleteFromStartBtn.Click += new System.EventHandler(this.deleteFromStartBtn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 24);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "remove:";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.deleteFromEndNum);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Controls.Add(this.deleteFromEndBtn);
+            this.groupBox5.Location = new System.Drawing.Point(788, 167);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(455, 56);
+            this.groupBox5.TabIndex = 18;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "delete from end";
+            // 
+            // deleteFromEndBtn
+            // 
+            this.deleteFromEndBtn.Location = new System.Drawing.Point(302, 19);
+            this.deleteFromEndBtn.Name = "deleteFromEndBtn";
+            this.deleteFromEndBtn.Size = new System.Drawing.Size(122, 28);
+            this.deleteFromEndBtn.TabIndex = 5;
+            this.deleteFromEndBtn.Text = "delete";
+            this.deleteFromEndBtn.UseVisualStyleBackColor = true;
+            this.deleteFromEndBtn.Click += new System.EventHandler(this.deleteFromEndBtn_Click);
+            // 
+            // deleteFromEndNum
+            // 
+            this.deleteFromEndNum.Location = new System.Drawing.Point(83, 21);
+            this.deleteFromEndNum.Name = "deleteFromEndNum";
+            this.deleteFromEndNum.Size = new System.Drawing.Size(120, 20);
+            this.deleteFromEndNum.TabIndex = 13;
+            // 
+            // deleteFromStartNum
+            // 
+            this.deleteFromStartNum.Location = new System.Drawing.Point(83, 19);
+            this.deleteFromStartNum.Name = "deleteFromStartNum";
+            this.deleteFromStartNum.Size = new System.Drawing.Size(120, 20);
+            this.deleteFromStartNum.TabIndex = 14;
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1342, 482);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -233,8 +323,8 @@
             this.Controls.Add(this.doneBtn);
             this.Controls.Add(this.loadedFilesLbl);
             this.Controls.Add(this.openFilesBtn);
-            this.Name = "Form1";
-            this.Text = "F&R filenames";
+            this.Name = "MainWindow";
+            this.Text = "FNMP";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -242,6 +332,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,6 +363,14 @@
         private System.Windows.Forms.TextBox addToEndTxt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addToEndBtn;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown deleteFromStartNum;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button deleteFromStartBtn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.NumericUpDown deleteFromEndNum;
+        private System.Windows.Forms.Button deleteFromEndBtn;
     }
 }
 

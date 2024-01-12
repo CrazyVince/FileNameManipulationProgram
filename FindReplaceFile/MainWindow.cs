@@ -13,13 +13,13 @@ using System.Xml.Linq;
 
 namespace FindReplaceFile
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         List<string> NamesRaw;
         List<string> NamesProcessed;
 
 
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
         }
@@ -44,7 +44,7 @@ namespace FindReplaceFile
                 NamesRaw.Add(name);
 
             //display the loaded files in the label.
-            ResetTexts();
+            loadedFilesLbl.Text = "";
             foreach (string name in NamesRaw) 
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
@@ -59,9 +59,9 @@ namespace FindReplaceFile
             string replaceString = replaceTxt.Text;
 
             //if the text boxes are epmty, abort
-            if (findString == "" || replaceString == "")
+            if (findString == "")
             {
-                MessageBox.Show("the find and replace text boxes can't be empty!");
+                MessageBox.Show("the find text box can't be empty!");
                 return;
             }
 
@@ -86,15 +86,6 @@ namespace FindReplaceFile
 
             Apply();
         }
-
-        private void doneBtn_Click(object sender, EventArgs e)
-        {
-            ResetTexts();
-            NamesRaw.Clear();
-            NamesProcessed.Clear();
-        }
-
-
 
         private void addToStartBtn_Click(object sender, EventArgs e)
         {
@@ -145,6 +136,79 @@ namespace FindReplaceFile
             Apply();
         }
 
+        private void deleteFromStartBtn_Click(object sender, EventArgs e)
+        {
+            int deleteNum = (int)deleteFromStartNum.Value;
+
+            foreach (string name in NamesRaw)
+            {
+                //get the name without the path and extension
+                string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
+                nameCut = nameCut.Substring(0, nameCut.LastIndexOf('.'));
+
+                //make the changes
+                if (deleteNum > nameCut.Length)
+                {
+                    MessageBox.Show("you cant delete more than the length of the file name!");
+                    return;
+                }
+                string processedNameCut = nameCut.Substring(deleteNum);
+
+                //add the path and extension to the cut name
+                string path = name.Substring(0, name.LastIndexOf('\\') + 1);
+                string type = name.Substring(name.LastIndexOf('.'));
+                string processedName = path + processedNameCut + type;
+
+                //add the processed name to the processed names array
+                NamesProcessed.Add(processedName);
+            }
+
+            //apply the changes
+            Apply();
+        }
+
+        private void deleteFromEndBtn_Click(object sender, EventArgs e)
+        {
+            int deleteNum = (int)deleteFromEndNum.Value;
+
+            foreach (string name in NamesRaw)
+            {
+                //get the name without the path and extension
+                string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
+                nameCut = nameCut.Substring(0, nameCut.LastIndexOf('.'));
+
+                //make the changes
+                if (deleteNum > nameCut.Length)
+                {
+                    MessageBox.Show("you cant delete more than the length of the file name!");
+                    return;
+                }
+                string processedNameCut = nameCut.Substring(0, nameCut.Length - deleteNum);
+
+                //add the path and extension to the cut name
+                string path = name.Substring(0, name.LastIndexOf('\\') + 1);
+                string type = name.Substring(name.LastIndexOf('.'));
+                string processedName = path + processedNameCut + type;
+
+                //add the processed name to the processed names array
+                NamesProcessed.Add(processedName);
+            }
+
+            //apply the changes
+            Apply();
+        }
+
+        private void doneBtn_Click(object sender, EventArgs e)
+        {
+            loadedFilesLbl.Text = "";
+            findTxt.Text = "";
+            replaceTxt.Text = "";
+            addToEndTxt.Text = "";
+            addToStartTxt.Text = "";
+            NamesRaw.Clear();
+            NamesProcessed.Clear();
+        }
+
         void Apply()
         {
             //Check for matching names. If matching names ar found, return out of the function.
@@ -187,23 +251,13 @@ namespace FindReplaceFile
             NamesProcessed.Clear();
 
             //update the loaded files label to show the new names.
-            ResetTexts();
+            loadedFilesLbl.Text = "";
             foreach (string name in NamesRaw)
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
                 loadedFilesLbl.Text += nameCut + ", ";
             }
-        }
-
-
-        void ResetTexts()
-        {
-            loadedFilesLbl.Text = "";
-            findTxt.Text = "";
-            replaceTxt.Text = "";
-            addToEndTxt.Text = "";
-            addToStartTxt.Text = "";
         }
     }
 }
