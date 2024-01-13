@@ -37,12 +37,11 @@ namespace FindReplaceFile
                 loadedNames.Add(name);
 
             //display the loaded files in the label.
-            loadedFilesLbl.Text = "";
             foreach (string name in loadedNames) 
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
-                loadedFilesLbl.Text += nameCut + ", ";
+                loadedFilesLst.Items.Add(nameCut);
             }
         }
 
@@ -233,12 +232,12 @@ namespace FindReplaceFile
             processedNames.Clear();
 
             //update the loaded files label to show the new names.
-            loadedFilesLbl.Text = "";
+            loadedFilesLst.Items.Clear();
             foreach (string name in loadedNames)
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
-                loadedFilesLbl.Text += nameCut + ", ";
+                loadedFilesLst.Items.Add(nameCut);
             }
         }
 
@@ -256,12 +255,12 @@ namespace FindReplaceFile
         {
             loadedNames.Clear();
             processedNames.Clear();
-            loadedFilesLbl.Text = "";
+            loadedFilesLst.Items.Clear();
         }
 
         private void clearAllBtn_Click(object sender, EventArgs e)
         {
-            loadedFilesLbl.Text = "";
+            loadedFilesLst.Items.Clear();
             findTxt.Text = "";
             replaceTxt.Text = "";
             addToEndTxt.Text = "";
@@ -272,7 +271,7 @@ namespace FindReplaceFile
             processedNames.Clear();
         }
 
-        private void loadedFilesLbl_DragEnter(object sender, DragEventArgs e)
+        private void loadedFilesLst_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -282,10 +281,9 @@ namespace FindReplaceFile
             {
                 e.Effect = DragDropEffects.None;
             }
-
         }
-        
-        private void loadedFilesLbl_DragDrop(object sender, DragEventArgs e)
+
+        private void loadedFilesLst_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -294,7 +292,8 @@ namespace FindReplaceFile
                 {
                     loadedNames.Add(file);
                     string nameCut = file.Substring(file.LastIndexOf('\\') + 1);
-                    loadedFilesLbl.Text += nameCut + ", ";
+
+                    loadedFilesLst.Items.Add(nameCut);
                 }
             }
         }
