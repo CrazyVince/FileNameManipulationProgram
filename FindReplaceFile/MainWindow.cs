@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 
 namespace FindReplaceFile
 {
@@ -41,7 +43,14 @@ namespace FindReplaceFile
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
-                loadedFilesLst.Items.Add(nameCut);
+                //if file is pdf, also show the page count
+                string pageCountStr = "";
+
+                string type = name.Substring(name.LastIndexOf('.'));
+                if (type == ".pdf") pageCountStr = GetPdfPagesCount(name).ToString();
+                else pageCountStr = "None";
+
+                loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
             }
         }
 
@@ -232,12 +241,20 @@ namespace FindReplaceFile
             processedNames.Clear();
 
             //update the loaded files label to show the new names.
-            loadedFilesLst.Items.Clear();
+            loadedFilesDGV.Rows.Clear();
             foreach (string name in loadedNames)
             {
                 string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
 
-                loadedFilesLst.Items.Add(nameCut);
+                //if file is pdf, add the page count to the display
+                string pageCountStr = "";
+
+                string type = name.Substring(name.LastIndexOf('.'));
+                if (type == ".pdf") pageCountStr = GetPdfPagesCount(name).ToString();
+
+                else pageCountStr = "None";
+
+                loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
             }
         }
 
@@ -255,12 +272,12 @@ namespace FindReplaceFile
         {
             loadedNames.Clear();
             processedNames.Clear();
-            loadedFilesLst.Items.Clear();
+            loadedFilesDGV.Rows.Clear();
         }
 
         private void clearAllBtn_Click(object sender, EventArgs e)
         {
-            loadedFilesLst.Items.Clear();
+            loadedFilesDGV.Rows.Clear();
             findTxt.Text = "";
             replaceTxt.Text = "";
             addToEndTxt.Text = "";
@@ -293,9 +310,60 @@ namespace FindReplaceFile
                     loadedNames.Add(file);
                     string nameCut = file.Substring(file.LastIndexOf('\\') + 1);
 
-                    loadedFilesLst.Items.Add(nameCut);
+                    //if file is pdf, add the page count to the display
+                    string pageCountStr = "";
+
+                    string type = file.Substring(file.LastIndexOf('.'));
+                    if (type == ".pdf") pageCountStr = GetPdfPagesCount(file).ToString();
+
+                    else pageCountStr = "None";
+
+                    loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
                 }
             }
+        }
+
+        private void loadedFilesDVG_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void loadedFilesDVG_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
+                {
+                    loadedNames.Add(file);
+                    string nameCut = file.Substring(file.LastIndexOf('\\') + 1);
+
+                    //if file is pdf, add the page count to the display
+                    string pageCountStr = "";
+
+                    string type = file.Substring(file.LastIndexOf('.'));
+                    if (type == ".pdf") pageCountStr = GetPdfPagesCount(file).ToString();
+
+                    else pageCountStr = "None";
+
+                    loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
+                }
+            }
+        }
+
+        int GetPdfPagesCount(string path)
+        {
+            PdfReader reader = new PdfReader(path);
+            int count = reader.NumberOfPages;
+            reader.Dispose();
+            return count;
         }
     }
 }

@@ -55,7 +55,9 @@
             this.deleteFromEndBtn = new System.Windows.Forms.Button();
             this.clearTextBoxesBtn = new System.Windows.Forms.Button();
             this.clearLoadedFilesBtn = new System.Windows.Forms.Button();
-            this.loadedFilesLst = new System.Windows.Forms.ListBox();
+            this.loadedFilesDGV = new System.Windows.Forms.DataGridView();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -63,11 +65,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromStartNum)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadedFilesDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // openFilesBtn
             // 
-            this.openFilesBtn.Location = new System.Drawing.Point(481, 268);
+            this.openFilesBtn.Location = new System.Drawing.Point(687, 244);
             this.openFilesBtn.Name = "openFilesBtn";
             this.openFilesBtn.Size = new System.Drawing.Size(95, 83);
             this.openFilesBtn.TabIndex = 1;
@@ -101,7 +104,7 @@
             // 
             // clearAllBtn
             // 
-            this.clearAllBtn.Location = new System.Drawing.Point(616, 386);
+            this.clearAllBtn.Location = new System.Drawing.Point(822, 362);
             this.clearAllBtn.Name = "clearAllBtn";
             this.clearAllBtn.Size = new System.Drawing.Size(93, 84);
             this.clearAllBtn.TabIndex = 8;
@@ -305,7 +308,7 @@
             // 
             // clearTextBoxesBtn
             // 
-            this.clearTextBoxesBtn.Location = new System.Drawing.Point(481, 386);
+            this.clearTextBoxesBtn.Location = new System.Drawing.Point(687, 362);
             this.clearTextBoxesBtn.Name = "clearTextBoxesBtn";
             this.clearTextBoxesBtn.Size = new System.Drawing.Size(93, 84);
             this.clearTextBoxesBtn.TabIndex = 19;
@@ -315,7 +318,7 @@
             // 
             // clearLoadedFilesBtn
             // 
-            this.clearLoadedFilesBtn.Location = new System.Drawing.Point(616, 268);
+            this.clearLoadedFilesBtn.Location = new System.Drawing.Point(822, 244);
             this.clearLoadedFilesBtn.Name = "clearLoadedFilesBtn";
             this.clearLoadedFilesBtn.Size = new System.Drawing.Size(93, 84);
             this.clearLoadedFilesBtn.TabIndex = 20;
@@ -323,24 +326,38 @@
             this.clearLoadedFilesBtn.UseVisualStyleBackColor = true;
             this.clearLoadedFilesBtn.Click += new System.EventHandler(this.clearLoadedFilesBtn_Click);
             // 
-            // loadedFilesLst
+            // loadedFilesDGV
             // 
-            this.loadedFilesLst.AllowDrop = true;
-            this.loadedFilesLst.FormattingEnabled = true;
-            this.loadedFilesLst.Location = new System.Drawing.Point(21, 284);
-            this.loadedFilesLst.Name = "loadedFilesLst";
-            this.loadedFilesLst.ScrollAlwaysVisible = true;
-            this.loadedFilesLst.Size = new System.Drawing.Size(393, 186);
-            this.loadedFilesLst.TabIndex = 21;
-            this.loadedFilesLst.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedFilesLst_DragDrop);
-            this.loadedFilesLst.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedFilesLst_DragEnter);
+            this.loadedFilesDGV.AllowDrop = true;
+            this.loadedFilesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.loadedFilesDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileName,
+            this.PageCount});
+            this.loadedFilesDGV.Location = new System.Drawing.Point(12, 309);
+            this.loadedFilesDGV.Name = "loadedFilesDGV";
+            this.loadedFilesDGV.Size = new System.Drawing.Size(447, 150);
+            this.loadedFilesDGV.TabIndex = 22;
+            this.loadedFilesDGV.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedFilesDVG_DragDrop);
+            this.loadedFilesDGV.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedFilesDVG_DragEnter);
+            // 
+            // FileName
+            // 
+            this.FileName.HeaderText = "file name";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Width = 300;
+            // 
+            // PageCount
+            // 
+            this.PageCount.HeaderText = "page count";
+            this.PageCount.Name = "PageCount";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 482);
-            this.Controls.Add(this.loadedFilesLst);
+            this.ClientSize = new System.Drawing.Size(993, 482);
+            this.Controls.Add(this.loadedFilesDGV);
             this.Controls.Add(this.clearLoadedFilesBtn);
             this.Controls.Add(this.clearTextBoxesBtn);
             this.Controls.Add(this.groupBox5);
@@ -366,6 +383,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadedFilesDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,7 +418,9 @@
         private System.Windows.Forms.Button deleteFromEndBtn;
         private System.Windows.Forms.Button clearTextBoxesBtn;
         private System.Windows.Forms.Button clearLoadedFilesBtn;
-        private System.Windows.Forms.ListBox loadedFilesLst;
+        private System.Windows.Forms.DataGridView loadedFilesDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PageCount;
     }
 }
 
