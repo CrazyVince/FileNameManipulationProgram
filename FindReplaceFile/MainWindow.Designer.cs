@@ -56,8 +56,13 @@
             this.clearTextBoxesBtn = new System.Windows.Forms.Button();
             this.clearLoadedFilesBtn = new System.Windows.Forms.Button();
             this.loadedFilesDGV = new System.Windows.Forms.DataGridView();
+            this.FileCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PageCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.projectCodeLengthNum = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.seperateProjectCodeBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,6 +71,8 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadedFilesDGV)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projectCodeLengthNum)).BeginInit();
             this.SuspendLayout();
             // 
             // openFilesBtn
@@ -116,7 +123,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(409, 217);
+            this.label2.Location = new System.Drawing.Point(427, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 37);
             this.label2.TabIndex = 10;
@@ -197,7 +204,7 @@
             this.groupBox3.Controls.Add(this.addToEndTxt);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.addToEndBtn);
-            this.groupBox3.Location = new System.Drawing.Point(12, 158);
+            this.groupBox3.Location = new System.Drawing.Point(12, 148);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(455, 56);
             this.groupBox3.TabIndex = 16;
@@ -282,7 +289,7 @@
             this.groupBox5.Controls.Add(this.deleteFromEndNum);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.deleteFromEndBtn);
-            this.groupBox5.Location = new System.Drawing.Point(491, 158);
+            this.groupBox5.Location = new System.Drawing.Point(491, 148);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(455, 56);
             this.groupBox5.TabIndex = 18;
@@ -333,32 +340,78 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.loadedFilesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.loadedFilesDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileCode,
             this.FileName,
             this.PageCount});
-            this.loadedFilesDGV.Location = new System.Drawing.Point(27, 257);
+            this.loadedFilesDGV.Location = new System.Drawing.Point(27, 332);
             this.loadedFilesDGV.Name = "loadedFilesDGV";
-            this.loadedFilesDGV.Size = new System.Drawing.Size(943, 213);
+            this.loadedFilesDGV.Size = new System.Drawing.Size(943, 197);
             this.loadedFilesDGV.TabIndex = 22;
             this.loadedFilesDGV.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedFilesDVG_DragDrop);
             this.loadedFilesDGV.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedFilesDVG_DragEnter);
+            // 
+            // FileCode
+            // 
+            this.FileCode.HeaderText = "code";
+            this.FileCode.Name = "FileCode";
+            this.FileCode.Width = 200;
             // 
             // FileName
             // 
             this.FileName.HeaderText = "file name";
             this.FileName.Name = "FileName";
             this.FileName.ReadOnly = true;
-            this.FileName.Width = 800;
+            this.FileName.Width = 600;
             // 
             // PageCount
             // 
             this.PageCount.HeaderText = "page count";
             this.PageCount.Name = "PageCount";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.projectCodeLengthNum);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.seperateProjectCodeBtn);
+            this.groupBox6.Location = new System.Drawing.Point(12, 210);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(353, 56);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "seperate project code";
+            // 
+            // projectCodeLengthNum
+            // 
+            this.projectCodeLengthNum.Location = new System.Drawing.Point(83, 21);
+            this.projectCodeLengthNum.Name = "projectCodeLengthNum";
+            this.projectCodeLengthNum.Size = new System.Drawing.Size(120, 20);
+            this.projectCodeLengthNum.TabIndex = 13;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "code length:";
+            // 
+            // seperateProjectCodeBtn
+            // 
+            this.seperateProjectCodeBtn.Location = new System.Drawing.Point(219, 16);
+            this.seperateProjectCodeBtn.Name = "seperateProjectCodeBtn";
+            this.seperateProjectCodeBtn.Size = new System.Drawing.Size(122, 28);
+            this.seperateProjectCodeBtn.TabIndex = 5;
+            this.seperateProjectCodeBtn.Text = "seperate";
+            this.seperateProjectCodeBtn.UseVisualStyleBackColor = true;
+            this.seperateProjectCodeBtn.Click += new System.EventHandler(this.seperateProjectCodeBtn_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 482);
+            this.ClientSize = new System.Drawing.Size(993, 541);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.loadedFilesDGV);
             this.Controls.Add(this.clearLoadedFilesBtn);
             this.Controls.Add(this.clearTextBoxesBtn);
@@ -370,6 +423,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.clearAllBtn);
             this.Controls.Add(this.openFilesBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainWindow";
             this.Text = "FNMP";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -386,6 +440,9 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.deleteFromEndNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadedFilesDGV)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projectCodeLengthNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,8 +478,13 @@
         private System.Windows.Forms.Button clearTextBoxesBtn;
         private System.Windows.Forms.Button clearLoadedFilesBtn;
         private System.Windows.Forms.DataGridView loadedFilesDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PageCount;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.NumericUpDown projectCodeLengthNum;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button seperateProjectCodeBtn;
     }
 }
 

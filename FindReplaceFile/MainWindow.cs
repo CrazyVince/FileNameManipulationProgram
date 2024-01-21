@@ -13,7 +13,6 @@ namespace FindReplaceFile
         List<string> loadedNames;
         List<string> processedNames;
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -50,7 +49,7 @@ namespace FindReplaceFile
                 if (type == ".pdf") pageCountStr = GetPdfPagesCount(name).ToString();
                 else pageCountStr = "None";
 
-                loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
+                loadedFilesDGV.Rows.Add("", nameCut, pageCountStr);
             }
         }
 
@@ -198,6 +197,34 @@ namespace FindReplaceFile
             //apply the changes
             Apply();
         }
+        private void seperateProjectCodeBtn_Click(object sender, EventArgs e)
+        {
+            //get the code length
+            int codeLength = (int)projectCodeLengthNum.Value;
+
+            //clear the loaded files table
+            loadedFilesDGV.Rows.Clear();
+            foreach (string name in loadedNames)
+            {
+                //cut the name
+                string nameCut = name.Substring(name.LastIndexOf('\\') + 1);
+
+                //get the project code
+                string projectCode = nameCut.Substring(0, (int)codeLength);
+
+                //cut the code away from the name
+                nameCut = nameCut.Substring(codeLength);
+
+                //if file type is pdf, get the page count, if not leave it as 'none'
+                string pageCountStr = "none";
+
+                string type = name.Substring(name.LastIndexOf('.'));
+                if (type == ".pdf") pageCountStr = GetPdfPagesCount(name).ToString();
+
+                //load in the new values
+                loadedFilesDGV.Rows.Add(projectCode, nameCut, pageCountStr);
+            }
+        }
 
         void Apply()
         {
@@ -254,7 +281,7 @@ namespace FindReplaceFile
 
                 else pageCountStr = "None";
 
-                loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
+                loadedFilesDGV.Rows.Add("", nameCut, pageCountStr);
             }
         }
 
@@ -318,7 +345,7 @@ namespace FindReplaceFile
 
                     else pageCountStr = "None";
 
-                    loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
+                    loadedFilesDGV.Rows.Add("", nameCut, pageCountStr);
                 }
             }
         }
@@ -353,7 +380,7 @@ namespace FindReplaceFile
 
                     else pageCountStr = "None";
 
-                    loadedFilesDGV.Rows.Add(nameCut, pageCountStr);
+                    loadedFilesDGV.Rows.Add("", nameCut, pageCountStr);
                 }
             }
         }
@@ -365,5 +392,7 @@ namespace FindReplaceFile
             reader.Dispose();
             return count;
         }
+
+        
     }
 }
